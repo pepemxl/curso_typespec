@@ -29,9 +29,105 @@ Sus características clave:
 
 ## Ventajas sobre OpenAPI/Swagger
 
+TypeSpec ofrece varias ventajas significativas sobre OpenAPI/Swagger, especialmente en escenarios de desarrollo moderno y a gran escala. 
 
+Es un lenguaje de programación (DSL) con sintaxis concisa y capacidades de abstracción.
 
+### Modelos, operaciones y relaciones
 
+Permite definir modelos, operaciones y relaciones con tipos fuertes, herencia, genéricos y decoradores.
+
+Por ejemplo:
+
+```yaml
+@route("/users")
+namespace Users {
+  model User {
+    @key id: string;
+    name: string;
+    age: int32;
+  }
+
+  op list(): User[];
+}
+```
+
+Mientras que en OpenAPI/Swagger se vería como:
+
+```yaml
+paths:
+  /users:
+    get:
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        age:
+          type: integer
+      required: [id, name, age]
+```
+
+### Modularidad
+
+Typespec soporta modularidad  a travez de namespaces, imports y templates. También permite extender modelos con `extends` o `mixins`.
+
+Ejemplo:
+
+```yaml
+model Timestamps {
+  createdAt: zonedDateTime;
+  updatedAt: zonedDateTime;
+}
+
+model User extends Timestamps {
+  id: string;
+}
+```
+
+### Decoradores
+
+Typespec usa decoradores para añadir metadatos específicos. (ej: @route, @body, @doc). Sin embargo tambien podemos crear decoradores custom para nuestros casos de uso.
+
+Ejemplo:
+
+```yaml
+@doc("Usuario del sistema")
+model User {
+  @minLength(3)
+  name: string;
+}
+```
+
+### Emitters
+
+Typespec usa emitter para crear código específico y además permite crear versiones customizadas a nuestras necesidades que será nuestro principal objetivo en este curso.
+
+- TypeSpec--> OpenAPI
+- TypeSpec --> OpenAPI + Clases Python + Client SDK.
+
+### Validación de Tipos
+
+- Tiene un sistema de tipos avanzado (uniones, genéricos, templates).
+- Detecta errores en tiempo de compilación.
+
+Ejemplo:
+
+```yaml
+op getUser(id: string): User | Error;
+```
 
 ## La Arquitectura de TypeSpec
 
