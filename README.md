@@ -11,11 +11,13 @@
 1. **¿Qué es TypeSpec?**
     - Lenguaje para describir APIs y modelos de datos
     - Ventajas sobre OpenAPI/Swagger
-    - Casos de uso comunes
+    - La arquitecteura de Typespec
+        - Casos de uso comunes
 
 2. **Configuración del entorno**
     - Instalación de Node.js y npm
     - Instalación del compilador TypeSpec
+    - Entorno de trabajo usando este repositorio
 
 3. **Sintaxis básica**
     - Modelos y propiedades
