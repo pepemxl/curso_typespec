@@ -27,6 +27,12 @@ Sus características clave:
 - Linter integrado: Incluye un sistema de linter que ayuda a detectar posibles problemas y anti-patrones en las definiciones de API.
 
 
+## Ventajas sobre OpenAPI/Swagger
+
+
+
+
+
 ## La Arquitectura de TypeSpec
 
 El eje central de typespec es el `compiler`, sin embargo para los usuarios de typespec nuestro principal atención será alrededor de `Emitters`. Más adelante profundizaremos en los elementos de typespec para poder extender y customizar nuestras implementaciones.
@@ -42,7 +48,3 @@ El eje central de typespec es el `compiler`, sin embargo para los usuarios de ty
 
 [Link a plugin](https://marketplace.visualstudio.com/items?itemName=typespec.typespec-vscode)
 
-
-## Inciar un proyecto de typespec
-
-Ve a directorio donde crearas el proyecto.
