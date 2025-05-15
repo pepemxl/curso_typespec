@@ -1,8 +1,9 @@
-# Curso: Generación de Código Python con TypeSpec y Emitters
+# Creación de Emitters con TypeSpec
 
 ## Módulo 1: Introducción a TypeSpec
 
 ### Objetivos:
+
 - Entender qué es TypeSpec y sus casos de uso
 - Configurar el entorno de desarrollo
 - Aprender los conceptos básicos de TypeSpec
@@ -183,6 +184,6 @@
 5. [Flask](https://flask.palletsprojects.com/es/stable/)
 6. [Django](https://docs.djangoproject.com/es/5.2/)
 7. [FastAPI documentation](https://fastapi.tiangolo.com/)
-
+8. [dbt](https://www.startdataengineering.com/post/dbt-data-build-tool-tutorial/)
 
 
