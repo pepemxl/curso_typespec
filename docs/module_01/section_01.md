@@ -4,7 +4,16 @@
 [Typespec Docs](https://typespec.io/docs/)
 
 
-TypeSpec es un lenguaje de definición de API desarrollado por Microsoft.
+TypeSpec es un lenguaje de definición/descripción de API desarrollado por Microsoft, el cual es agnostico a los lenguages de programación. Diseñado especialmente para crear APIs, a partir del diseño de la data de nuestros servicios.
+
+El flujo usual es:
+
+<div>
+<span align="center"> 
+<img src="../images/flujo_typespec.png" width="90%"/>
+</span>
+<div>
+
 
 Sus características clave:
 
@@ -17,31 +26,17 @@ Sus características clave:
 - Extensible: Es un lenguaje altamente extensible que permite crear patrones y bibliotecas reutilizables para diferentes aspectos de las APIs.
 - Linter integrado: Incluye un sistema de linter que ayuda a detectar posibles problemas y anti-patrones en las definiciones de API.
 
-## Requerimientos
 
+## La Arquitectura de TypeSpec
 
-- `node.js 20 LTS`
-- `npm 7+`
+El eje central de typespec es el `compiler`, sin embargo para los usuarios de typespec nuestro principal atención será alrededor de `Emitters`. Más adelante profundizaremos en los elementos de typespec para poder extender y customizar nuestras implementaciones.
 
+<div>
+<span align="center">
+<img src="../images/arquitectura_de_typespec.png" width="90%"/>
+</span>
+</div>
 
-## Instalando typespec
-
-`npm install -g @typespec/compiler`
-
-
-```bash
-npm install -g @typespec/compiler
-
-added 73 packages in 3s
-
-13 packages are looking for funding
-  run `npm fund` for details
-npm notice
-npm notice New major version of npm available! 10.2.4 -> 11.0.0
-npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.0.0
-npm notice Run npm install -g npm@11.0.0 to update!
-npm notice
-```
 
 ## Plugin para Visual Studio Code
 
