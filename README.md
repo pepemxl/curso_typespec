@@ -175,6 +175,33 @@
     - Probar endpoints con load test usando Gatling, Locust
     - Validar el comportamiento
 
+
+## Estructura de este repositorio
+
+```bash
+.
+├── docs
+│   ├── images         # todas las imagenes estarán aqui
+│   ├── module_01
+│   ├── module_02
+│   ├── module_03
+│   ├── module_04
+│   ├── services       # La descripción de los servicios estarán aqui
+│   └── guidelines.md  # Guías para contribuir en este proyecto
+├── Dockerfile
+├── docker-compose.yml
+├── Makefile
+├── package.json
+├── src/
+│   ├── containers     # Los Dockerfiles/Dockercompose de los servicios
+│   ├── db             # Los DDLs de los servicios
+│   ├── services       # El código de downstream services estará aquí
+│   └── main.tsp       # Archivo principal TypeSpec
+└── tsp-output/        # Directorio para los archivos generados
+```
+
+
+
 ## Recursos Adicionales
 
 1. [Documentación oficial de TypeSpec](https://microsoft.github.io/typespec/)
