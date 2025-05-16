@@ -157,7 +157,7 @@
     - Opción 2: Crear emitters de código.
 
 <div>
-<img src="docs/images/TypeSpecFirst.png" width="80%"/>
+<img src="docs/images/TypeSpecFirst.png" width="90%"/>
 </div>
 
 ### Requisitos
