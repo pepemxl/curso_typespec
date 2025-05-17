@@ -6,13 +6,10 @@
 
 TypeSpec es un lenguaje de definición/descripción de API desarrollado por Microsoft, el cual es agnostico a los lenguages de programación. Diseñado especialmente para crear APIs, a partir del diseño de la data de nuestros servicios.
 
-El flujo usual es:
+<h2>El flujo usual es</h2>
 
-<div>
-<span align="center"> 
-<img src="../images/flujo_typespec.png" width="90%"/>
-</span>
-<div>
+
+![FlujoTypeSpec](../images/flujo_typespec.png)
 
 
 Sus características clave:
@@ -133,14 +130,14 @@ op getUser(id: string): User | Error;
 
 El eje central de typespec es el `compiler`, sin embargo para los usuarios de typespec nuestro principal atención será alrededor de `Emitters`. Más adelante profundizaremos en los elementos de typespec para poder extender y customizar nuestras implementaciones.
 
-<div>
-<span align="center">
-<img src="../images/arquitectura_de_typespec.png" width="90%"/>
-</span>
-</div>
+
+![ArquitecturaTypeSpec](../images/arquitectura_de_typespec.png)
+
 
 
 ## Plugin para Visual Studio Code
 
-[Link a plugin](https://marketplace.visualstudio.com/items?itemName=typespec.typespec-vscode)
+<div>
+<a href="https://marketplace.visualstudio.com/items?itemName=typespec.typespec-vscode">Link a Plugin de VSCODE</a>
+</div>
 
