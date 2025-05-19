@@ -4,9 +4,20 @@
 [Typespec Docs](https://typespec.io/docs/)
 
 
-TypeSpec es un lenguaje de definición/descripción de API desarrollado por Microsoft, el cual es agnostico a los lenguages de programación. Diseñado especialmente para crear APIs, a partir del diseño de la data de nuestros servicios.
+TypeSpec es un lenguaje de definición/descripción de API desarrollado por Microsoft, el cual es agnostico a los lenguages de programación (DSL). Diseñado especialmente para crear APIs, en principio esto es posible a partir del diseño de la data de nuestros servicios.
 
-<h2>El flujo usual es</h2>
+Al ser una asbtracción de OpenAPI nos permite especificar componentes importantes de una API, cosas como:
+
+- Visibillidad
+- Autorización
+- Dominios
+    - Modelos
+    - Campos(Fields)
+    - Joins
+- Filtrado
+- Errores
+
+<h2>El flujo de trabajo con TypeSpec</h2>
 
 
 ![FlujoTypeSpec](../images/flujo_typespec.png)
@@ -28,30 +39,43 @@ Sus características clave:
 
 TypeSpec ofrece varias ventajas significativas sobre OpenAPI/Swagger, especialmente en escenarios de desarrollo moderno y a gran escala. 
 
-Es un lenguaje de programación (DSL) con sintaxis concisa y capacidades de abstracción.
+Es un Domain Specific Language (DSL), es decir, es un lenguage con sintaxis concisa y capacidades de abstracción.
 
-### Modelos, operaciones y relaciones
+### Modelos, Operaciones y Relaciones
 
 Permite definir modelos, operaciones y relaciones con tipos fuertes, herencia, genéricos y decoradores.
 
 Por ejemplo:
 
-```yaml
-@route("/users")
-namespace Users {
-  model User {
-    @key id: string;
-    name: string;
-    age: int32;
+#### TypeSpec
+
+```yaml title="Endpoint User" linenums="1"
+@route("/users")        # Path
+namespace Users {       # Namespace
+  model User {          # Model
+    @key id: string;    # Field
+    name: string;       # Field
+    age: int32;         # Field
   }
 
-  op list(): User[];
+  op list(): User[];    # Operation
 }
 ```
 
+Esto describe un endpoint con las siguientes caracteristicas:
+
+- Ruta (URL): `/users`
+- Método HTTP: `GET` (implícito por la operación `list`)
+- Namespace: `Users`
+- Operación: `list()`
+- Respuesta: Un array de objetos `User`
+
+
 Mientras que en OpenAPI/Swagger se vería como:
 
-```yaml
+#### OpenAPI/Swagger
+
+```yaml title="Endpoint User" linenums="1"
 paths:
   /users:
     get:
@@ -74,8 +98,10 @@ components:
           type: string
         age:
           type: integer
+          format: int32
       required: [id, name, age]
 ```
+
 
 ### Modularidad
 
@@ -83,7 +109,7 @@ Typespec soporta modularidad  a travez de namespaces, imports y templates. Tambi
 
 Ejemplo:
 
-```yaml
+```yaml title="User como Extension de Timestamp"
 model Timestamps {
   createdAt: zonedDateTime;
   updatedAt: zonedDateTime;
@@ -96,11 +122,13 @@ model User extends Timestamps {
 
 ### Decoradores
 
-Typespec usa decoradores para añadir metadatos específicos. (ej: @route, @body, @doc). Sin embargo tambien podemos crear decoradores custom para nuestros casos de uso.
+Typespec usa decoradores para añadir metadatos específicos. (ej: `@route`, `@body`, `@doc`). 
+
+Sin embargo tambien podemos crear decoradores custom para nuestros casos de uso.
 
 Ejemplo:
 
-```yaml
+```yaml title="Decorador doc" linenums="1"
 @doc("Usuario del sistema")
 model User {
   @minLength(3)
