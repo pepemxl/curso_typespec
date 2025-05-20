@@ -1,171 +1,86 @@
-# ¿Qué es TypeSpec?
+# Configuración de Entorno de Trabajo
 
 
-[Typespec Docs](https://typespec.io/docs/)
+Tendremos tres opciones para trabajar TypeSpec:
+
+1. Playground [link](https://typespec.io/playground/)
+2. Instalar localmente TypeSpec
+3. Usar el entorno preconfigurado de este repositorio.
 
 
-TypeSpec es un lenguaje de definición/descripción de API desarrollado por Microsoft, el cual es agnostico a los lenguages de programación (DSL). Diseñado especialmente para crear APIs, en principio esto es posible a partir del diseño de la data de nuestros servicios.
+## Playground 
 
-Al ser una asbtracción de OpenAPI nos permite especificar componentes importantes de una API, cosas como:
+En está sección describiremos como configurar un entorno de trabajo con TypSpec.
 
-- Visibillidad
-- Autorización
-- Dominios
-    - Modelos
-    - Campos(Fields)
-    - Joins
-- Filtrado
-- Errores
+Typespec cuenta con un playground que usaremos para familiarizarnos con el lenguage y como principal herramienta de pruebas.
 
-<h2>El flujo de trabajo con TypeSpec</h2>
+El curso contiene un entorno local el cual está configurado para realizar las practicas de typescript.
 
 
-![FlujoTypeSpec](../images/flujo_typespec.png)
+---
+
+Consiste normalmente de los siguientes dos pasos:
+
+1. Instalación de Node.js y npm
+2. Instalación del compilador TypeSpec
+
+## Requerimientos
 
 
-Sus características clave:
+Los requirimientos básicos para trabajar con typespec son:
 
-- Descripción de APIs: TypeSpec permite definir la forma de las APIs (Application Programming Interfaces), incluyendo sus entradas, salidas y comportamientos.
-- Generación de código: A partir de las definiciones en TypeSpec, se puede generar automáticamente código para diferentes propósitos:
-    - Clientes: Código para que otros sistemas interactúen con la API.
-    - Servidores: Código para implementar la lógica de la API.
-    - Documentación: Documentación clara y concisa de la API.
-- Multi-protocolo: TypeSpec es compatible con diversos protocolos de comunicación, como REST, gRPC y otros.
-- Extensible: Es un lenguaje altamente extensible que permite crear patrones y bibliotecas reutilizables para diferentes aspectos de las APIs.
-- Linter integrado: Incluye un sistema de linter que ayuda a detectar posibles problemas y anti-patrones en las definiciones de API.
+- `node.js 20 LTS`
+- `npm 7+`
 
 
-## Ventajas sobre OpenAPI/Swagger
+## Instalando typespec
 
-TypeSpec ofrece varias ventajas significativas sobre OpenAPI/Swagger, especialmente en escenarios de desarrollo moderno y a gran escala. 
+El primer paso es instalar el compilador de typespec con la siguiente instrucción.
 
-Es un Domain Specific Language (DSL), es decir, es un lenguage con sintaxis concisa y capacidades de abstracción.
-
-### Modelos, Operaciones y Relaciones
-
-Permite definir modelos, operaciones y relaciones con tipos fuertes, herencia, genéricos y decoradores.
-
-Por ejemplo:
-
-#### TypeSpec
-
-```yaml title="Endpoint User" linenums="1"
-@route("/users")        # Path
-namespace Users {       # Namespace
-  model User {          # Model
-    @key id: string;    # Field
-    name: string;       # Field
-    age: int32;         # Field
-  }
-
-  op list(): User[];    # Operation
-}
-```
-
-Esto describe un endpoint con las siguientes caracteristicas:
-
-- Ruta (URL): `/users`
-- Método HTTP: `GET` (implícito por la operación `list`)
-- Namespace: `Users`
-- Operación: `list()`
-- Respuesta: Un array de objetos `User`
-
-
-Mientras que en OpenAPI/Swagger se vería como:
-
-#### OpenAPI/Swagger
-
-```yaml title="Endpoint User" linenums="1"
-paths:
-  /users:
-    get:
-      responses:
-        200:
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/User"
-components:
-  schemas:
-    User:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        age:
-          type: integer
-          format: int32
-      required: [id, name, age]
+```bash title="Instalación de typespec compiler"
+npm install -g @typespec/compiler
 ```
 
 
-### Modularidad
+```bash title="Ejemplo de salida esperada"
+added 73 packages in 3s
 
-Typespec soporta modularidad  a travez de namespaces, imports y templates. También permite extender modelos con `extends` o `mixins`.
-
-Ejemplo:
-
-```yaml title="User como Extension de Timestamp"
-model Timestamps {
-  createdAt: zonedDateTime;
-  updatedAt: zonedDateTime;
-}
-
-model User extends Timestamps {
-  id: string;
-}
+13 packages are looking for funding
+  run `npm fund` for details
+npm notice
+npm notice New major version of npm available! 10.2.4 -> 11.0.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.0.0
+npm notice Run npm install -g npm@11.0.0 to update!
+npm notice
 ```
 
-### Decoradores
+## Inciar un proyecto de typespec
 
-Typespec usa decoradores para añadir metadatos específicos. (ej: `@route`, `@body`, `@doc`). 
+Ve a directorio donde crearas el proyecto.
 
-Sin embargo tambien podemos crear decoradores custom para nuestros casos de uso.
 
-Ejemplo:
+## Entorno de trabajo usando este repositorio
 
-```yaml title="Decorador doc" linenums="1"
-@doc("Usuario del sistema")
-model User {
-  @minLength(3)
-  name: string;
-}
+
+Para este repositorio la estructura necesaria para typespec será:
+
+```bash hl_lines="7-9" title="Archivos principales para TypeSpec"
+.
+├── Dockerfile
+├── docker-compose.yml
+├── Makefile
+├── package.json
+├── src/
+│   ├── services       # El código de downstream services estará aquí
+│   └── main.tsp       # Archivo principal TypeSpec
+└── tsp-output/        # Directorio para los archivos generados
 ```
 
-### Emitters
+Nuestro Makefile nos ayudará con los siguientes puntos:
 
-Typespec usa emitter para crear código específico y además permite crear versiones customizadas a nuestras necesidades que será nuestro principal objetivo en este curso.
-
-- TypeSpec--> OpenAPI
-- TypeSpec --> OpenAPI + Clases Python + Client SDK.
-
-### Validación de Tipos
-
-- Tiene un sistema de tipos avanzado (uniones, genéricos, templates).
-- Detecta errores en tiempo de compilación.
-
-Ejemplo:
-
-```yaml
-op getUser(id: string): User | Error;
-```
-
-## La Arquitectura de TypeSpec
-
-El eje central de typespec es el `compiler`, sin embargo para los usuarios de typespec nuestro principal atención será alrededor de `Emitters`. Más adelante profundizaremos en los elementos de typespec para poder extender y customizar nuestras implementaciones.
-
-
-![ArquitecturaTypeSpec](../images/arquitectura_de_typespec.png)
-
-
-
-## Plugin para Visual Studio Code
-
-<div>
-<a href="https://marketplace.visualstudio.com/items?itemName=typespec.typespec-vscode">Link a Plugin de VSCODE</a>
-</div>
+- Desarrollo persistente: Los archivos en `src/` se sincronizan con el contenedor gracias al volumen montado.
+- Salida accesible: Los archivos generados se guardan en `tsp-output/` en tu host.
+- Dependencias aisladas: El directorio `node_modules` se mantiene persistente pero aislado en un volumen.
+- Comandos útiles: El Makefile proporciona atajos para las operaciones comunes.
+- Extensible: Podremos añadir más servicios a `docker-compose.yml`.
 
