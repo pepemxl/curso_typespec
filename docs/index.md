@@ -8,18 +8,17 @@
 - Configurar el entorno de desarrollo
 - Aprender los conceptos básicos de TypeSpec
 
-1. **¿Qué es TypeSpec?**
+1. **Configuración del entorno**
+    - Trabajando en Playground
+    - Instalación de Node.js y npm
+    - Instalación del compilador TypeSpec
+    - Entorno de trabajo usando este repositorio
 
+2. **¿Qué es TypeSpec?**
     - Lenguaje para describir APIs y modelos de datos
     - Ventajas sobre OpenAPI/Swagger
     - La arquitecteura de Typespec
         - Casos de uso comunes
-
-2. **Configuración del entorno**
-
-    - Instalación de Node.js y npm
-    - Instalación del compilador TypeSpec
-    - Entorno de trabajo usando este repositorio
 
 3. **Sintaxis básica**
     - Modelos y propiedades
