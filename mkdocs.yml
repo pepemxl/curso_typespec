@@ -3,19 +3,29 @@ site_description: Un sitio para aprender TypeSpec
 theme:
   name: material
   custom_dir: docs_overrides
+  features:
+    - content.code.annotate
+    - content.code.copy
+    - content.code.select
   palette:
     scheme: slate
     primary: indigo
     accent: indigo
   highlightjs: true
+  hljs_languages:
+    - yaml
+    - python
+    - typespec
+    - rust
+  collapse_navigation: True
   locale: es
 nav:
   - Inicio: 'index.md'
   - "Módulo 1":
-    - "Sección 1": 'module_01/section_01.md'
-    - "Sección 2": 'module_01/section_02.md'
-    - "Sección 3": 'module_01/section_03.md'
-    - "Sección 4": 'module_01/section_04.md'
+    - "Sección 1 Configuración": 'module_01/section_01.md'
+    - "Sección 2 Qué es TypeSpec": 'module_01/section_02.md'
+    - "Sección 3 Sintaxis": 'module_01/section_03.md'
+    - "Sección 4 Ejercicio": 'module_01/section_04.md'
 plugins:
   - search
   - mermaid2
@@ -34,7 +44,11 @@ markdown_extensions:
       pygments_lang_class: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - attr_list
   - md_in_html
   - pymdownx.blocks.caption
