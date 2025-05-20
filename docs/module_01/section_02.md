@@ -34,6 +34,23 @@ Sus características clave:
 - Extensible: Es un lenguaje altamente extensible que permite crear patrones y bibliotecas reutilizables para diferentes aspectos de las APIs.
 - Linter integrado: Incluye un sistema de linter que ayuda a detectar posibles problemas y anti-patrones en las definiciones de API.
 
+Por el momento cuenta con dos librerías que estudiaremos a fondo, sin embargo hay más en desarrollo:
+
+- Http
+- OpenAPI
+- Rest (En desarrollo)
+- Events (En desarrollo)
+- SSE (En desarrollo)
+- Streams (En desarrollo)
+- Versioning (En desarrollo)
+- Xml (En desarrollo)
+
+Donde cada libreria cuenta con diferentes elementos, donde los más básicos son:
+
+- Tipos de datos
+- Decoradores
+- Js api
+
 
 ## Ventajas sobre OpenAPI/Swagger
 
@@ -49,18 +66,6 @@ Por ejemplo:
 
 #### TypeSpec
 
-```yaml title="Endpoint User" linenums="1"
-@route("/users")        # Path
-namespace Users {       # Namespace
-  model User {          # Model
-    @key id: string;    # Field
-    name: string;       # Field
-    age: int32;         # Field
-  }
-
-  op list(): User[];    # Operation
-}
-```
 ```yaml title="Endpoin User" linenums="1"
 import "@typespec/http";
 
@@ -79,9 +84,6 @@ namespace Users {      # Namespace
 }
 ```
 
-
-
-
 Esto describe un endpoint con las siguientes caracteristicas:
 
 - Ruta (URL): `/users`
@@ -96,21 +98,33 @@ Mientras que en OpenAPI/Swagger se vería como:
 #### OpenAPI/Swagger
 
 ```yaml title="Endpoint User" linenums="1"
+openapi: 3.0.0
+info:
+  title: (title)
+  version: 0.0.0
+tags: []
 paths:
   /users:
     get:
+      operationId: list
+      parameters: []
       responses:
-        200:
+        '200':
+          description: The request has succeeded.
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/User"
+                  $ref: '#/components/schemas/User'
 components:
   schemas:
     User:
       type: object
+      required:
+        - id
+        - name
+        - age
       properties:
         id:
           type: string
@@ -119,7 +133,6 @@ components:
         age:
           type: integer
           format: int32
-      required: [id, name, age]
 ```
 
 
