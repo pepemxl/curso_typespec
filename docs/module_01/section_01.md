@@ -1,30 +1,34 @@
 # Configuración de Entorno de Trabajo
 
 
+En está sección describiremos como configurar un entorno de trabajo con TypeSpec.
+
 Tendremos tres opciones para trabajar TypeSpec:
 
 1. Playground [link](https://typespec.io/playground/)
 2. Instalar localmente TypeSpec
 3. Usar el entorno preconfigurado de este repositorio.
 
+El curso contiene un entorno local preconfigurado el cual está configurado para realizar las practicas de typescript.
+
+---
 
 ## Playground 
 
-En está sección describiremos como configurar un entorno de trabajo con TypSpec.
+Typespec cuenta con un playground que usaremos para familiarizarnos con el lenguage y como principal herramienta de pruebas. La opción es simplemente ir al sitio [https://typespec.io/playground/](https://typespec.io/playground/).
 
-Typespec cuenta con un playground que usaremos para familiarizarnos con el lenguage y como principal herramienta de pruebas.
+Donde encontraremos un entorno de pruebas
 
-El curso contiene un entorno local el cual está configurado para realizar las practicas de typescript.
+![Playground](../images/typespec_playground.png)
 
-
----
+## Instalación local de TypeSpec
 
 Consiste normalmente de los siguientes dos pasos:
 
 1. Instalación de Node.js y npm
 2. Instalación del compilador TypeSpec
 
-## Requerimientos
+### Requerimientos
 
 
 Los requirimientos básicos para trabajar con typespec son:
@@ -33,7 +37,7 @@ Los requirimientos básicos para trabajar con typespec son:
 - `npm 7+`
 
 
-## Instalando typespec
+### Instalando typespec
 
 El primer paso es instalar el compilador de typespec con la siguiente instrucción.
 
@@ -54,9 +58,94 @@ npm notice Run npm install -g npm@11.0.0 to update!
 npm notice
 ```
 
-## Inciar un proyecto de typespec
+### Inciciar un Proyecto de TypeSpec
 
-Ve a directorio donde crearas el proyecto.
+Ve a directorio donde crearas el proyecto. 
+
+Para iniciar un proyecto de typespec usamos la instrucción:
+
+```bash title="tsp init"
+tsp init 
+```
+
+Nos mostrará 4 opciones:
+
+```bash title="Salida de tsp init"
+TypeSpec compiler v0.64.0
+
+? Please select a template › - Use arrow-keys. Return to submit.
+❯   Empty project       min compiler ver: 0.64.0 - Create an empty project.
+    Generic REST API    min compiler ver: 0.64.0
+    TypeSpec Library (With TypeScript)  min compiler ver: 0.64.0
+    TypeSpec Emitter (With TypeScript)  min compiler ver: 0.64.0
+```
+
+- Crear proyecto vacio.
+- Crear un REST API generica.
+- Crear un nuevo paquete para agregar decoradores o linters a typespec.
+- Crear un nuevo paquete que estará emitiendo typespec.
+
+Nos mostrará opcion de nombrar el proyecto:
+
+```bash title="Salida de Empty Project"
+TypeSpec compiler v0.64.0
+
+✔ Please select a template › Empty project      min compiler ver: 0.64.0
+Create an empty project.
+✔ Project name … example_01
+✔ Do you want to generate a .gitignore file? … no
+
+TypeSpec init completed. You can run `tsp install` now to install dependencies.
+Project created successfully.
+```
+
+Al elegir un proyecto vacio creará los siguientes 3 archivos:
+
+```bash title="Proyecto Vacio"
+main.tsp
+package.json
+tpsconfig.yaml
+```
+
+donde
+
+- `main.tsp` es un archivo vacio
+- `tpsconfig.yaml` es un archivo vacio 
+
+```bash title="package.json"
+{
+  "name": "example_01",
+  "version": "0.1.0",
+  "type": "module",
+  "peerDependencies": {
+    "@typespec/compiler": "latest"
+  },
+  "devDependencies": {
+    "@typespec/compiler": "latest"
+  },
+  "private": true
+}
+```
+
+
+### Compilación de un Proyecto de TypeSpec
+
+La compilación la realizaremos usando la opción `compile`:
+
+```bash title="Instrucción para Compilar"
+tsp compile .
+```
+
+Esto generá una serie de archivos dependendiendo de la opción de creación, así como nuestra implementación en `main.tsp`.
+
+```bash title="Salida de Compilación"
+TypeSpec compiler v0.64.0
+
+Compilation completed successfully.
+
+No emitter was configured, no output was generated. Use `--emit <emitterName>` to pick emitter or specify it in the TypeSpec config.
+```
+
 
 
 ## Entorno de trabajo usando este repositorio
@@ -83,4 +172,23 @@ Nuestro Makefile nos ayudará con los siguientes puntos:
 - Dependencias aisladas: El directorio `node_modules` se mantiene persistente pero aislado en un volumen.
 - Comandos útiles: El Makefile proporciona atajos para las operaciones comunes.
 - Extensible: Podremos añadir más servicios a `docker-compose.yml`.
+
+
+para empezar a usar este entorno correr las siguientes instrucciones:
+
+
+```bash title="Crear la imagen de docker"
+make build
+```
+
+```bash title="Iniciar el contendor de docker"
+make up
+```
+
+Si ya no trabajaras con este entorno puede pararlo con:
+
+```bash title="Detener contenedor"
+make clean
+```
+
 
