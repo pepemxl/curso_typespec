@@ -26,6 +26,7 @@ nav:
     - "Sección 2 Qué es TypeSpec": 'module_01/section_02.md'
     - "Sección 3 Sintaxis": 'module_01/section_03.md'
     - "Sección 4 Ejercicio": 'module_01/section_04.md'
+  - "Guía de desarrollo": 'guidelines.md'
 plugins:
   - search
   - mermaid2
