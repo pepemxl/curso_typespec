@@ -1,5 +1,5 @@
 # Custom ignores
-
+TEMP
 src/examples/**/package.json
 src/examples/**/package-lock.json
 src/examples/**/node_modules
