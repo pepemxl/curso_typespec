@@ -3,6 +3,10 @@ TEMP
 src/examples/**/package.json
 src/examples/**/package-lock.json
 src/examples/**/node_modules
+src/package.json
+src/package-lock.json
+src/node_modules
+src/tsp-output
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
