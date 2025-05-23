@@ -2,9 +2,14 @@ version: '3.8'
 
 services:
   typespec-dev:
-    build: .
+    build:
+      context: .
+      args:
+        USER_UID: ${UID:-1000}
+        USER_GID: ${GID:-1000}
     container_name: typespec-dev
     image: typespec-dev
+    user: "${UID:-1000}:${GID:-1000}"
     volumes:
       - ./src:/app
       - ./src/tsp-output:/app/tsp-output
@@ -17,5 +22,3 @@ services:
     stdin_open: true
     tty: true  # Permite mantener el contenedor corriendo
     privileged: true # Solo si necesitas capacidades especiales
-    user: developer
-    # command: sh -c "npm install && tail -f /dev/null"  # Comando para desarrollo

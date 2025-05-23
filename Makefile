@@ -1,6 +1,8 @@
 # Local Python To be updated
 PY := python3.10
 VENV := venv
+UID := $(shell id -u)
+GID := $(shell id -g)
 REPONAME=$(basename $(pwd))
 DOCKER=docker
 DOCKER_COMPOSE = docker-compose
@@ -31,10 +33,10 @@ REPORTS_DIR = reports
 .PHONY: build_python up_python down_python restart_python clean_python watch_python compile_python
 
 build:
-	$(DOCKER_COMPOSE) build
+	UID=$(UID) GID=$(GID) $(DOCKER_COMPOSE) build
 
 up:
-	$(DOCKER_COMPOSE) up -d
+	UID=$(UID) GID=$(GID) $(DOCKER_COMPOSE) up -d
 
 down:
 	$(DOCKER_COMPOSE) down
