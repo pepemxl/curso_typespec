@@ -4,14 +4,18 @@ services:
   typespec-dev:
     build: .
     container_name: typespec-dev
+    image: typespec-dev
     volumes:
-      - ./src:/app/src
-      - ./tsp-output:/app/tsp-output
-      - ./node_modules:/app/node_modules
+      - ./src:/app
+      - ./src/tsp-output:/app/tsp-output
+      - ./src/node_modules:/app/node_modules
     ports:
       - "6500:6500"
     environment:
       - NODE_ENV=development
     working_dir: /app
+    stdin_open: true
     tty: true  # Permite mantener el contenedor corriendo
-    command: sh -c "npm install && tail -f /dev/null"  # Comando para desarrollo
+    privileged: true # Solo si necesitas capacidades especiales
+    user: developer
+    # command: sh -c "npm install && tail -f /dev/null"  # Comando para desarrollo
