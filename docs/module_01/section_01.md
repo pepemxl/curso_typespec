@@ -150,6 +150,18 @@ No emitter was configured, no output was generated. Use `--emit <emitterName>` t
 
 ## Entorno de trabajo usando este repositorio
 
+### Documentación
+
+Primero tendremos acceso a la documentación usando el comando
+
+```bash title="Build y run documentación"
+make up_docs
+```
+
+después basta con ir a [http://localhost:8080](http://localhost:8080)
+
+En está página encontrarás todo el material.
+
 
 Para este repositorio la estructura necesaria para typespec será:
 
@@ -181,9 +193,56 @@ para empezar a usar este entorno correr las siguientes instrucciones:
 make build
 ```
 
+```bash title="Salida make build"
+UID=1000 GID=1000 docker-compose build
+Building typespec-dev
+[+] Building 0.7s (10/10) FINISHED                                                                       docker:default
+ => [internal] load build definition from Dockerfile                                                               0.0s
+ => => transferring dockerfile: 562B                                                                               0.0s
+ => [internal] load metadata for docker.io/library/node:20-alpine                                                  0.7s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => [1/6] FROM docker.io/library/node:20-alpine@sha256:be56e91681a8ec1bba91e3006039bd228dc797fd984794a3efedab325b  0.0s
+ => CACHED [2/6] RUN apk update && apk add --no-cache     bash     git     curl     openssh-client     nodejs      0.0s
+ => CACHED [3/6] RUN chown -R node:node /usr/local/lib/node_modules                                                0.0s
+ => CACHED [4/6] RUN chown -R node:node /usr/local/bin/                                                            0.0s
+ => CACHED [5/6] WORKDIR /app                                                                                      0.0s
+ => CACHED [6/6] RUN npm install -g @typespec/compiler                                                             0.0s
+ => exporting to image                                                                                             0.0s
+ => => exporting layers                                                                                            0.0s
+ => => writing image sha256:becfcc269b2fee3a04b45d834d437bf6efcf120667877e41c2e98f4e4340b1a2                       0.0s
+ => => naming to docker.io/library/typespec-dev                                                                    0.0s
+```
+
+
 ```bash title="Iniciar el contendor de docker"
 make up
 ```
+
+```bash title="Salida make up"
+UID=1000 GID=1000 docker-compose up -d
+Creating network "curso_typespec_default" with the default driver
+Creating typespec-dev ... done
+```
+
+```bash title="Conectarnos al contendor de docker"
+make shell
+```
+
+```bash title="Salida make shell"
+docker exec -it typespec-dev sh
+/app $
+```
+
+
+```bash title="Compilar el archivo de typespec"
+make compile
+```
+
+```bash title="Ejecutar el watch de typespec"
+make watch
+```
+
 
 Si ya no trabajaras con este entorno puede pararlo con:
 
