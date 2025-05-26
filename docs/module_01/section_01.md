@@ -234,6 +234,10 @@ docker exec -it typespec-dev sh
 /app $
 ```
 
+Desde este punto podremos realizar todas las tareas relacionadas con typespec.
+
+Además hemos incluido un par de compandos para mandar llamar los comandas `compile` y `watch` dentro del contenedor.
+
 
 ```bash title="Compilar el archivo de typespec"
 make compile
