@@ -71,15 +71,15 @@ import "@typespec/http";
 
 using Http;
 
-@service               # Service
-namespace Users {      # Namespace
-  @route("/users")     # Path
-  op list(): User[];   # Operation
+@service               // Service
+namespace Users {      // Namespace
+  @route("/users")     // Path
+  op list(): User[];   // Operation
 
-  model User {         # Model
-    @key id: string;   # Field
-    name: string;      # Field
-    age: int32;        # Field
+  model User {         // Model
+    @key id: string;   // Field
+    name: string;      // Field
+    age: int32;        // Field
   }
 }
 ```
@@ -202,3 +202,10 @@ El eje central de typespec es el `compiler`, sin embargo para los usuarios de ty
 <a href="https://marketplace.visualstudio.com/items?itemName=typespec.typespec-vscode">Link a Plugin de VSCODE</a>
 </div>
 
+
+
+## Material Extra
+
+
+- [Ejemplos de OpenAPI](https://learn.openapis.org/examples/)
+- [Stripe OpenApi](https://github.com/stripe/openapi/blob/master/openapi/spec3.yaml)
