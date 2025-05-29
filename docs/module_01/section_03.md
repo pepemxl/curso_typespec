@@ -14,6 +14,11 @@ Tenemos tres imports básicos:
 | Import de archivo JS | `import "./models.js"` |
 | Import de Librería | `import "@typespec/rest"` |
 
+```bash title="Ejemplo"
+import "@typespec/http";
+```
+
+
 ### Declaración de variables(Identifiers)
 
 La declariación de variables(Identifiers) debe ser única dentro del mismo scope.
