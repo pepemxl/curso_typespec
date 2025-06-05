@@ -7,6 +7,10 @@ src/package.json
 src/package-lock.json
 src/node_modules
 src/tsp-output
+src/**/.gitignore
+src/typespec_schema/**/package.json
+src/typespec_schema/**/package-lock.json
+src/typespec_schema/**/node_modules
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
