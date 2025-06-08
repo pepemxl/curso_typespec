@@ -17,6 +17,26 @@ Al ser una asbtracción de OpenAPI nos permite especificar componentes important
 - Filtrado
 - Errores
 
+
+## ¿Por qué queremos TypeSpec?
+
+Hoy en día los sistemas de datos son ecosistemas donde interactuan y tienen relación decenas o cientos de servicios, donde unos evolucionan y otros simplemente desaparecen. Lo cual fue parte de la razón por la cual surgieron Frameworks/Protocolos como Thrift y gRPC para la comunicación entre servicios, utilizados en arquitecturas distribuidas. Ambos permiten que diferentes sistemas o servicios se comuniquen de manera eficiente usando como principal herramienta un Lenguaje de definición de interfaces (IDL) el cual permite definir estructuras de datos y servicios en un archivo. Aunque tiene muchas cualidades una de sus principales restricciones es que trabaja **sin contrato estricto** lo que significa que permite evolución de APIs pero puede generar problemas de compatibilidad. Asi que nuestras APIs siguen dependiendo de los Schemas, esos contratos entre APIs y clientes.
+
+### TypeSpec cubre la parte del modelado de APIs independientemente de lenguage utilizado para la implementación de la API:
+
+- Permite definir contratos de API con tipos fuertes y relaciones complejas.
+- Soporta **herencia**, **composición** y generics (algo que Thrift y gRPC no tienen de forma nativa).
+
+### Desde un solo archivo TypeSpec, puedes generar:
+
+- OpenAPI (Swagger) para REST.
+- gRPC (usando protobuf).
+- Documentación automática.
+- Clientes/Servidores en varios lenguajes.
+
+
+## Flujo de Trabajo
+
 <h2>El flujo de trabajo con TypeSpec</h2>
 
 
