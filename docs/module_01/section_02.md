@@ -164,8 +164,8 @@ Ejemplo:
 
 ```yaml title="User como Extension de Timestamp"
 model Timestamps {
-  createdAt: zonedDateTime;
-  updatedAt: zonedDateTime;
+  createdAt: string;
+  updatedAt: string;
 }
 
 model User extends Timestamps {
