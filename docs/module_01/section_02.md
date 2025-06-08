@@ -22,6 +22,11 @@ Al ser una asbtracción de OpenAPI nos permite especificar componentes important
 
 Hoy en día los sistemas de datos son ecosistemas donde interactuan y tienen relación decenas o cientos de servicios, donde unos evolucionan y otros simplemente desaparecen. Lo cual fue parte de la razón por la cual surgieron Frameworks/Protocolos como Thrift y gRPC para la comunicación entre servicios, utilizados en arquitecturas distribuidas. Ambos permiten que diferentes sistemas o servicios se comuniquen de manera eficiente usando como principal herramienta un Lenguaje de definición de interfaces (IDL) el cual permite definir estructuras de datos y servicios en un archivo. Aunque tiene muchas cualidades una de sus principales restricciones es que trabaja **sin contrato estricto** lo que significa que permite evolución de APIs pero puede generar problemas de compatibilidad. Asi que nuestras APIs siguen dependiendo de los Schemas, esos contratos entre APIs y clientes.
 
+Aunque OpenApi se convirtio en una especificación en 2015/16 no fue si no hasta 2020/21 que surgieron más herramientas para aprovechar OpenApi como:
+
+- TypeSpec (Microsoft)
+- Smithy (Amazon)
+
 ### TypeSpec cubre la parte del modelado de APIs independientemente de lenguage utilizado para la implementación de la API:
 
 - Permite definir contratos de API con tipos fuertes y relaciones complejas.

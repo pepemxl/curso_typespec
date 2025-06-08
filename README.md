@@ -80,5 +80,7 @@
 6. [Documentación de Django](https://docs.djangoproject.com/es/5.2/)
 7. [Documentación de FastAPI](https://fastapi.tiangolo.com/)
 8. [Documentación de dbt](https://www.startdataengineering.com/post/dbt-data-build-tool-tutorial/)
+9. [Documentación de Smithy](https://smithy.io/)
+10. [Documentación AsyncAPI](https://www.asyncapi.com/en)
 
 

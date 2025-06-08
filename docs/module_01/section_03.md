@@ -24,11 +24,20 @@ import "@typespec/http";
 La declariación de variables(Identifiers) debe ser única dentro del mismo scope.
 
 ```yaml title="No permitido"
-namespace User {}
-model User {}
+namespace User {};
+model User {};
 ```
 
-Ejemplos:
+```bash title="Salida de Error"
+error duplicate-symbol Duplicate name: "User" 1:1
+error duplicate-symbol Duplicate name: "User" 2:1
+```
+
+Así que tenemos que ser muy consientes del diseño, sin embargo, al mismo tiempo podemos  visualizar errores durante el diseño.
+
+Un variable o identificador es una secuencia de uno o más caracteres que debe comenzar con una letra, un emoji, un guion bajo o un signo de dólar, y ser seguido por letras, números, emojis, guiones bajos o signos de dólar.
+
+Ejemplos de nombres validos e invalidos:
 
 - ✅ cat
 - ✅ Dog
@@ -38,6 +47,14 @@ Ejemplos:
 - ✅ 🚀
 - ❌ 1cat
 - ❌ *dog
+
+Como en todo lenguaje tenemos palabras reservadas, si embargo podemos utilzarlas simeplemente escapandolas un apostrofe reverso `` ` `` .
+
+```yaml title="example"
+model `enum` {};
+```
+
+
 
 ### Definición de un Namespace
 ```typespec
