@@ -5,17 +5,17 @@ ARG USER_GID=1000
 # Instala las dependencias básicas
 RUN apk update && apk add --no-cache \
     bash \
-    git \
+    build-base \
     curl \
-    openssh-client \
+    docker-cli \
+    gcc \
+    git \
+    make \
     nodejs \
     npm \
+    openssh-client \
     python3 \
     py3-pip \
-    build-base \
-    gcc \
-    make \
-    docker-cli \
     vim
 RUN chown -R node:node /usr/local/lib/node_modules
 RUN chown -R node:node /usr/local/bin/
@@ -26,6 +26,11 @@ WORKDIR /app
 
 # Instalar TypeSpec compiler y dependencias
 RUN npm install -g @typespec/compiler
+RUN npm install -g @typespec/http
+RUN npm install -g @typespec/rest
+RUN npm install -g @typespec/openapi3
+
+
 
 EXPOSE 6500
 
