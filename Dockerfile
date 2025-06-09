@@ -29,7 +29,9 @@ RUN npm install -g @typespec/compiler
 RUN npm install -g @typespec/http
 RUN npm install -g @typespec/rest
 RUN npm install -g @typespec/openapi3
-
+RUN npm install -g @typespec/http-client-python
+RUN npm install -g @typespec/http-server-js
+RUN npm install -g @typespec/http-client-js
 
 
 EXPOSE 6500
