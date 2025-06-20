@@ -1,116 +1,137 @@
-# Ejercicio práctico
+# Sintaxis básica (Continuación)
 
-- Crear un archivo `.tsp` básico
-- Definir un modelo simple y compilarlo
+## Sintaxis Básica
 
+Puedes checar toda la sintaxis en el sitio [https://typespec.io/docs/language-basics/overview/](https://typespec.io/docs/language-basics/overview/)
 
-
-```bash
-
-```
+vamos a revisar parte de la sintaxis básica que nos permitira trabajar en los proyectos.
 
 
-## Proyecto REST API Generico
+## Imports
 
-```bash title="example_02: Iniciar Proyecto"
-tsp init
-```
+Usamos imports para incluir ya sean archivos o librerías en nuestros programas de typespec.
 
-```bash title="example_02: Generic REST API"
-TypeSpec compiler v0.64.0
+Tenemos tres imports básicos:
 
-? Please select a template › - Use arrow-keys. Return to submit.
-    Empty project       min compiler ver: 0.64.0
-❯   Generic REST API    min compiler ver: 0.64.0 - Create a project representing a generic REST API
-    TypeSpec Library (With TypeScript)  min compiler ver: 0.64.0
-    TypeSpec Emitter (With TypeScript)  min compiler ver: 0.64.0
-```
+| Feature | Ejemplo |
+| ------- | ------- |
+| Import de archivo TypeSpec | `import "./models.tsp"` |
+| Import de archivo JS | `import "./models.js"` |
+| Import de Librería | `import "@typespec/rest"` |
 
-- Asignar nombre: por defecto nombre del folder
-- Agregar o no `.gitignore` file
-- Opcines de `Generic REST API`
-    - http
-    - rest
-    - openapi3
-
-```bash title="example_02: Siguientes pasos"
-TypeSpec compiler v0.64.0
-
-✔ Please select a template › Generic REST API   min compiler ver: 0.64.0
-Create a project representing a generic REST API
-✔ Project name … example_02
-✔ Do you want to generate a .gitignore file? … no
-? Update the libraries? ›  
-Instructions:
-    ↑/↓: Highlight option
-    ←/→/[space]: Toggle selection
-    a: Toggle all
-    enter/return: Complete answer
-◉   @typespec/http
-◉   @typespec/rest
-◉   @typespec/openapi3
-```
-
-Al seleccionar `http`:
-
-```bash title="salida"
-TypeSpec compiler v0.64.0
-
-✔ Please select a template › Generic REST API   min compiler ver: 0.64.0
-Create a project representing a generic REST API
-✔ Project name … example_02
-✔ Do you want to generate a .gitignore file? … no
-✔ Update the libraries? › @typespec/http, @typespec/rest, @typespec/openapi3
-
-TypeSpec init completed. You can run `tsp install` now to install dependencies.
-Project created successfully.
-```
-
-Genera los siguientes tres archivos: `main.tsp`, `package.json`, `tspconfig.yaml`.
-
-```bash title="main.tsp"
+```bash title="Ejemplo"
 import "@typespec/http";
-import "@typespec/rest";
-import "@typespec/openapi3";
 ```
 
-```bash title="package.json"
-{
-  "name": "example_02",
-  "version": "0.1.0",
-  "type": "module",
-  "peerDependencies": {
-    "@typespec/compiler": "latest",
-    "@typespec/http": "latest",
-    "@typespec/rest": "latest",
-    "@typespec/openapi3": "latest"
-  },
-  "devDependencies": {
-    "@typespec/compiler": "latest",
-    "@typespec/http": "latest",
-    "@typespec/rest": "latest",
-    "@typespec/openapi3": "latest"
-  },
-  "private": true
+
+## Generics (Tipos Genéricos)
+
+```typespec
+model Paginado<T> {
+  items: T[];
+  total: int32;
+}
+
+@get
+listarProductos(): Paginado<Producto>;
+```
+
+
+## Modelado de Tipos Básicos
+
+### a) Tipos primitivos:
+```typespec
+model Usuario {
+  nombre: string;
+  edad: int32;
+  activo: boolean;
+}
+```
+- `string`, 
+- `int32`, 
+- `boolean`, 
+- `float64`, 
+- etc.
+
+### b) Tipos personalizados:
+
+```typespec
+alias ID = string;
+model Producto {
+  id: ID;
+  precio: float64;
 }
 ```
 
-```bash title="tspconfig.yaml"
-emit:
-  - "@typespec/openapi3"
+
+## Tipos de Datos Nativos
+
+### Tipos de Datos Fecha Hora
+
+| Tipo | Descripción |
+| --- |  --- |
+| plainDate | Día de calendario |
+| plainTime | Hora |
+| utcDateTime | Día Hora en UTC |
+| offsetDateTime | Día Hora en zona horaria |
+| duration | Periodo de tiempo |
+
+
+### Tipos Númericos
+
+
+| Tipo | Rango | Descripción |
+| --- | --- | --- |
+| numeric | * | Tipo padre de todos los tipos númericos |
+| integer | * | Enteros |
+| float | * | Números binarios |
+| int64 | -9,223,372,036,854,775,808 a 9,223,372,036,854,775,807 | Entero de 64 bits |
+| int32 |  | Entero de 32 bits |
+| int16 |  | Entero de 16 bits |
+| int8 |  | Entero de 8 bits |
+| safeint |  | Entero que puede ser serializado en un JSON |
+| uint64 |  | entero sin signo de 64 bits |
+| uint32 |  | entero sin signo de 32 bits |
+| uint16 |  | entero sin signo de 16 bits |
+| uint8 |  | entero sin signo de 8 bits |
+| float32 |  | número flotante de 32 bits |
+| float64 |  | número flotante de 64 bits |
+| decimal | * | número decimal |
+| decimal128 |  | número decimal de 128 bits |
+
+### Tipo Core
+
+| Tipo |  Descripción |
+| --- | --- |
+| bytes | Secuencia de bytes |
+| string | Cadena de caracteres |
+| boolean | Boolean |
+| null | Valor NULL |
+| Array<Element> | Arreglo de un tipo de modelo equivalente a Element[] |
+| Record<Element> | Modelo con llaves string(Diccionario) Equivalente a Map<string, Element> o Dictionary<string, Element> |
+| unknown | equivalente al tipo any |
+| void | Indicador de que no retorna nada |
+| never | Indica que nunca occure el valor |
+
+
+### Tipo String
+
+| Tipo |  Descripción |
+| --- | --- |
+| url | Un url string |
+
+
+## Uniones y Enums
+
+```typespec
+model Respuesta {
+  resultado: "éxito" | "error"; // Unión de strings
+  codigo: 200 | 404; // Unión de números
+}
+
+enum Estado {
+  Activo,
+  Inactivo,
+  Pendiente,
+}
 ```
-
-Al usar el comando `tsp install`, todas las dependencias necesarias serán instaladas.
-
-```bash title="tsp install"
-TypeSpec compiler v0.64.0
-
-
-added 114 packages, and audited 115 packages in 9s
-
-21 packages are looking for funding
-  run `npm fund` for details
-
-found 0 vulnerabilities
-```
-
