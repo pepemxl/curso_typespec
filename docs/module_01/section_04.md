@@ -6,6 +6,14 @@ Puedes checar toda la sintaxis en el sitio [https://typespec.io/docs/language-ba
 
 vamos a revisar parte de la sintaxis básica que nos permitira trabajar en los proyectos.
 
+## Documentación
+
+TypeSpec ofrece varias maneras de documentar tu API, incluyendo comentarios de documentación y decoradores.
+
+- `@doc` 
+- `/** */`
+
+
 
 ## Imports
 
@@ -121,17 +129,3 @@ model Producto {
 | url | Un url string |
 
 
-## Uniones y Enums
-
-```typespec
-model Respuesta {
-  resultado: "éxito" | "error"; // Unión de strings
-  codigo: 200 | 404; // Unión de números
-}
-
-enum Estado {
-  Activo,
-  Inactivo,
-  Pendiente,
-}
-```
