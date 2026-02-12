@@ -6,6 +6,20 @@ Puedes checar toda la sintaxis en el sitio [https://typespec.io/docs/language-ba
 
 vamos a revisar parte de la sintaxis básica que nos permitira trabajar en los proyectos.
 
+## Aliases
+
+Los alias son una forma práctica de definir abreviaturas para tipos, especialmente al trabajar con expresiones complejas. Simplifican la sintaxis, pero no se representan en el grafo de tipos. Por lo tanto, no se pueden decorar. Si necesita asignar un nombre alternativo a un modelo se utiliza `model is`.
+
+Podemos definir un alias con la palabra clave `alias`.
+
+```ts
+alias Options = "one" | "two";
+```
+
+```ts
+alias UserName = User.name;
+```
+
 ## Declaración de variables(Identifiers)
 
 Un variable o identificador es una secuencia de uno o más caracteres que debe comenzar con una letra, un emoji, un guion bajo o un signo de dólar, y ser seguido por letras, números, emojis, guiones bajos o signos de dólar.
@@ -213,14 +227,6 @@ namespace Lib {
   @route("/test") op get(): string;
 }
 ```
-
-## Documentación
-
-TypeSpec ofrece varias maneras de documentar tu API, incluyendo comentarios de documentación y decoradores.
-
-- `@doc` 
-- `/** */`
-
 
 
 
