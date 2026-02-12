@@ -1,4 +1,8 @@
-# Creación de Emitters con TypeSpec
+# TypeSpec
+
+**TypeSpec es un lenguaje de código abierto, creado por Microsoft, para definir APIs de forma concisa y generar automáticamente especificaciones, código y documentación** .
+
+Usualmente al desarrollar APIs primero codificamos y después creamos contratos con openapi spec. Es decir, es code first. Hay bastantes trabajos para hacer api design first, sin embargo usando openapi se vuelve algo muy complicado desde el punto de vista del desarrollador. Typespec nos permite realmente desarrollar desde api design first!
 
 ## Módulo 1: Introducción a TypeSpec
 
@@ -82,5 +86,5 @@
 8. [Documentación de dbt](https://www.startdataengineering.com/post/dbt-data-build-tool-tutorial/)
 9. [Documentación de Smithy](https://smithy.io/)
 10. [Documentación AsyncAPI](https://www.asyncapi.com/en)
-
+11. [Alloy-framework](https://github.com/alloy-framework/alloy)
 
